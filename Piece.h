@@ -12,9 +12,14 @@ class Piece {
   */
   std::vector<Location> potentialMoves(Location);
 
+  /**
+   * Returns how the piece would like to be displayed in the terminal.
+   */
+  char* getTerminalDisplay(void);
 
  private:
   bool Color;
+  char terminalDisplay[10];
 
 };
 

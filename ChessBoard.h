@@ -17,6 +17,16 @@ class ChessBoard {
     */
    void exacuteMove(Move);
 
+  /**
+   * Displays a the actually |ChessBoard| in the terminal.
+   */
+   void displayBoard(void);
+
+   /**
+    * Changes whos turn it is to play.
+    */
+   void switchSides(void);
+
  private:
   /**
    * Checks to see if the new location and piece match up.
@@ -24,7 +34,7 @@ class ChessBoard {
    bool correctPiece(Move);
 
    /**
-    * Checks to see if the new moves location is occupied by a piece of the same color.
+    * Checks to see if the new moves location is occupied by another piece.
     */
    bool friendlyFire(Move);
 
@@ -34,12 +44,33 @@ class ChessBoard {
    bool movePutsInCheck(Move);
 
    /**
-    * Captures a piece.
+    * Checks to see if you are currently in check, if so it makes sure your next move protects
+    * the king.
     */
-   void capturePiece(Move);
+   bool moveOutOfCheck(Move);
+
+   /**
+    * Checks to see if the new move falls on an enemys piece, if it does
+    * it removes the piece from the board.
+    */
+   void canCapturePiece(Move);
+
+   /**
+    * This puts the opponent in check.
+    */
+   void inCheck(Move);
+
+   /**
+    * This puts the opponent in checkmate.
+    */
+   void inCheckMate(Move);
+
 
   Square board[8][8];
+  bool whitesTurn = true;
   bool checkMate = false;
+  bool whiteCheck = false;
+  bool blackCheck = false;
 
 };
 
