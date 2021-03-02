@@ -1,21 +1,24 @@
 main: ChessBoard
-	g++ -std=c++17 test.cpp ChessBoard.o Referee.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o run
+	g++ -std=c++17 main.cpp ChessBoard.o Referee.o Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o run
 
 test: ChessBoard
-	g++ -std=c++17 test.cpp ChessBoard.o Referee.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o test
+	g++ -std=c++17 test.cpp ChessBoard.o Referee.o Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o test
 	./test
 
 ChessBoard: Referee
-	g++ -std=c++17 ChessBoard.cpp Referee.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 ChessBoard.cpp Referee.o Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
 
 Referee: Square
-	g++ -std=c++17 Referee.cpp Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Referee.cpp Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
 
 Square: Piece
-	g++ -std=c++17 Square.cpp Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Square.cpp Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
 
-Piece: King
-	g++ -std=c++17 Piece.cpp King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+Piece: NullPiece
+	g++ -std=c++17 Piece.cpp NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+
+NullPiece: King
+	g++ -std=c++17 NullPiece.cpp King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
 
 King: Queen
 	g++ -std=c++17 King.cpp Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
