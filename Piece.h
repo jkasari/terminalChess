@@ -20,7 +20,7 @@ class Piece {
 
  private:
   bool Color;
-  char* terminalDisplay = {"\xE2\x99\x9B"};
+  std::string terminalDisplay = {"\xE2\x99\x9B"};
 
 };
 

@@ -7,10 +7,6 @@ class Square {
 
  public:
   Square();
-  /**
-   * Creates a Square, based on it's color and the current |Piece| it holds.
-   */
-  Square(bool);
 
   /**
    * Changes the piece on a Square.
@@ -23,7 +19,6 @@ class Square {
   std::string getPieceDisplay(void) const;
 
  private:
-  bool isWhite;
   Piece currentPiece;
 
 };

@@ -1,11 +1,6 @@
 #include "Square.h"
 
 Square::Square() {
-  isWhite = true;
-}
-
-Square::Square(bool white) {
-  isWhite = white;
   //currentPiece = newPiece;
 }
 

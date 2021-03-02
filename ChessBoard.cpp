@@ -6,8 +6,8 @@ std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
     for(int i = 0; i < 8; i++) {
         stream << "| ";
         for(int j = 0; j < 8; j++) {
-            stream << "\xE2\x99\x9B" << " | ";
-        //    stream << chessBoard.displayPiece(i, j) << " | ";
+        //    stream << "\xE2\x99\x9B" << " | ";
+            stream << chessBoard.displayPiece(i, j) << " | ";
         }
         if(i < 7) {
           stream << std::endl << "|---|---|---|---|---|---|---|---|" << std::endl;
@@ -20,7 +20,7 @@ std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
 ChessBoard::ChessBoard() {
     for(int i = 0; i < 8; ++i) {
         for(int j = 0; j < 8; ++j) {
-            Square sqr(true);
+            Square sqr;
             board[i][j] = sqr;
         }
     }
@@ -30,8 +30,8 @@ void ChessBoard::isValidMove(Move nextMove) {}
 
 void ChessBoard::exacuteMove(Move nextMove) {}
 
-char* ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
-    board[row][col].getPieceDisplay();
+std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
+    return board[row][col].getPieceDisplay();
 }
 
 void ChessBoard::switchSides(void) {}
