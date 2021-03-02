@@ -17,6 +17,15 @@ std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
     return stream;
 }
 
+ChessBoard::ChessBoard() {
+    for(int i = 0; i < 8; ++i) {
+        for(int j = 0; j < 8; ++j) {
+            Square sqr(true);
+            board[i][j] = sqr;
+        }
+    }
+}
+
 void ChessBoard::isValidMove(Move nextMove) {}
 
 void ChessBoard::exacuteMove(Move nextMove) {}

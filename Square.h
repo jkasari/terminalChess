@@ -6,10 +6,11 @@
 class Square {
 
  public:
+  Square();
   /**
    * Creates a Square, based on it's color and the current |Piece| it holds.
    */
-  Square(bool, Piece);
+  Square(bool);
 
   /**
    * Changes the piece on a Square.
@@ -22,7 +23,7 @@ class Square {
   std::string getPiece(void);
 
  private:
-  const bool isWhite;
+  bool isWhite;
   Piece currentPiece;
 
 };

@@ -4,9 +4,9 @@
 using namespace std;
 
 int main() {
-//  ChessBoard board;
+ChessBoard board;
 
-//  cout << board << endl;
+  cout << board << endl;
 
   return 0;
 }
