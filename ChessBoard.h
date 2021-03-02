@@ -25,7 +25,7 @@ class ChessBoard {
    * Give the character string for each piece to the ostream operator.
    * |NullPiece|s character string is just " ".
    */
-   std::string displayPiece(uint8_t, uint8_t) const;
+   char* displayPiece(uint8_t, uint8_t) const;
 
    /**
     * Changes whos turn it is to play.

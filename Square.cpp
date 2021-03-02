@@ -11,4 +11,4 @@ Square::Square(bool white) {
 
 void Square::newPiece(Piece newPiece) { currentPiece = newPiece; }
 
-std::string Square::getPiece(void) { return " "; }
+std::string Square::getPieceDisplay(void) const { return currentPiece.getTerminalDisplay(); }

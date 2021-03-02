@@ -20,7 +20,7 @@ class Square {
   /**
    * Returns the character string for the current |Piece| on the |Square|.
    */
-  std::string getPiece(void);
+  std::string getPieceDisplay(void) const;
 
  private:
   bool isWhite;
