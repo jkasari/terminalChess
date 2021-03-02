@@ -1,6 +1,7 @@
 #ifndef Piece_h
 #define Piece_h
 #include <vector>
+#include <string>
 
 using Location = std::pair<int8_t, int8_t>;
 
@@ -15,11 +16,11 @@ class Piece {
   /**
    * Returns how the piece would like to be displayed in the terminal.
    */
-  char* getTerminalDisplay(void);
+  std::string getTerminalDisplay(void) const;
 
  private:
   bool Color;
-  char terminalDisplay[10];
+  std::string terminalDisplay = {"\xE2\x99\x9B"};
 
 };
 

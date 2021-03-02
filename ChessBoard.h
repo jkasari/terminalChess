@@ -2,10 +2,14 @@
 #define ChessBoard_h
 #include "Move.h"
 #include "Square.h"
+#include <iostream>
 
 class ChessBoard {
 
+    friend std::ostream& operator<<(std::ostream&, const ChessBoard&);
+
  public:
+  ChessBoard ();
    /**
     * Checks to make sure the preposed move is valid relative to the current board setup.
     * It will cout a error message into the terminal the move is unvalid.
@@ -18,9 +22,10 @@ class ChessBoard {
    void exacuteMove(Move);
 
   /**
-   * Displays a the actually |ChessBoard| in the terminal.
+   * Give the character string for each piece to the ostream operator.
+   * |NullPiece|s character string is just " ".
    */
-   void displayBoard(void);
+   std::string displayPiece(uint8_t, uint8_t) const;
 
    /**
     * Changes whos turn it is to play.
