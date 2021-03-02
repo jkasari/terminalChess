@@ -2,7 +2,7 @@
 #define Piece_h
 #include <vector>
 
-using Location = std::pair<int8_t, int8_t>
+using Location = std::pair<int8_t, int8_t>;
 
 class Piece {
 
