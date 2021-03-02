@@ -1,5 +1,5 @@
 main: ChessBoard
-	g++ -std=c++17 test.cpp ChessBoard.o Referee.o Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o run
+	g++ -std=c++17 main.cpp ChessBoard.o Referee.o Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o run
 
 test: ChessBoard
 	g++ -std=c++17 test.cpp ChessBoard.o Referee.o Square.o Piece.o NullPiece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o test

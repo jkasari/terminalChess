@@ -1,5 +1,6 @@
 #ifndef Referee_h
 #define Referee_h
+#include <vector>
 
 struct Referee {
 

@@ -2,7 +2,7 @@
 #define Move_h
 #include "Piece.h"
 
-using Location = std::pair<int8_t, int8_t>
+using Location = std::pair<int8_t, int8_t>;
 
 class Move {
 
