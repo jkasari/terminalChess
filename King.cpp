@@ -1,7 +1,7 @@
 #include "King.h"
 
   std::vector<Location> King::potentialMoves(Location) {
-
+    return std::vector<Location>();
   }
 
   std::string King::getTerminalDisplay(void) const {

@@ -2,7 +2,7 @@
 
 
   std::vector<Location> Pawn::potentialMoves(Location) {
-
+    return std::vector<Location>();
   }
 
   std::string Pawn::getTerminalDisplay(void) const {

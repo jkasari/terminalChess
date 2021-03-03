@@ -2,7 +2,7 @@
 
 
   std::vector<Location> Knight::potentialMoves(Location) {
-
+    return std::vector<Location>();
   }
 
   std::string Knight::getTerminalDisplay(void) const {

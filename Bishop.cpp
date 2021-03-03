@@ -2,7 +2,7 @@
 
 
   std::vector<Location> Bishop::potentialMoves(Location) {
-
+    return std::vector<Location>();
   }
 
   std::string Bishop::getTerminalDisplay(void) const {

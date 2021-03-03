@@ -2,7 +2,7 @@
 
 
   std::vector<Location> Queen::potentialMoves(Location) {
-
+    return std::vector<Location>();
   }
 
   std::string Queen::getTerminalDisplay(void) const {

@@ -2,7 +2,7 @@
 
 
   std::vector<Location> Rook::potentialMoves(Location) {
-
+    return std::vector<Location>();
   }
 
   std::string Rook::getTerminalDisplay(void) const {

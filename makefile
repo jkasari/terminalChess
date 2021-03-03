@@ -6,31 +6,31 @@ test: ChessBoard
 	./test
 
 ChessBoard: Referee
-	g++ -std=c++17 ChessBoard.cpp Referee.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 ChessBoard.cpp -c
 
 Referee: Square
-	g++ -std=c++17 Referee.cpp Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Referee.cpp -c
 
 Square: Piece
-	g++ -std=c++17 Square.cpp Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Square.cpp -c
 
 Piece: King
-	g++ -std=c++17 Piece.cpp King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Piece.cpp -c
 
 King: Queen
-	g++ -std=c++17 King.cpp Queen.o Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 King.cpp -c
 
 Queen: Rook
-	g++ -std=c++17 Queen.cpp Rook.o Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Queen.cpp  -c
 
 Rook: Bishop
-	g++ -std=c++17 Rook.cpp Bishop.o Knight.o Pawn.o -c
+	g++ -std=c++17 Rook.cpp -c
 
 Bishop: Knight
-	g++ -std=c++17 Bishop.cpp Knight.o Pawn.o -c
+	g++ -std=c++17 Bishop.cpp -c
 
 Knight: Pawn
-	g++ -std=c++17 Knight.cpp Pawn.o -c
+	g++ -std=c++17 Knight.cpp -c
 
 Pawn:
 	g++ -std=c++17 Pawn.cpp -c
