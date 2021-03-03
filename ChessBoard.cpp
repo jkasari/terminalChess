@@ -1,5 +1,17 @@
 #include "ChessBoard.h"
 
+King* whiteKing = new King(Color::White);
+King* blackKing = new King(Color::Black);
+Queen* whiteQueen = new Queen(Color::White);
+Queen* blackQueen = new Queen(Color::Black);
+Rook* whiteRook = new Rook(Color::White);
+Rook* blackRook = new Rook(Color::Black);
+Bishop* whiteBishop = new Bishop(Color::White);
+Bishop* blackBishop = new Bishop(Color::White);
+Knight* whiteKnight = new Knight(Color::White);
+Knight* blackKnight = new Knight(Color::Black);
+Pawn* whitePawn = new Pawn(Color::White);
+Pawn* blackPawn = new Pawn(Color::Black);
 
 std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
     stream << "+---+---+---+---+---+---+---+---+" << std::endl;
@@ -23,8 +35,37 @@ ChessBoard::ChessBoard() {
             board[i][j] = sqr;
         }
     }
+    board[7][4].newPiece(whiteKing);
+    board[0][3].newPiece(blackKing);
+    board[7][3].newPiece(whiteQueen);
+    board[0][4].newPiece(blackQueen);
+
 }
 
+ChessBoard::~ChessBoard() {
+  delete whiteKing;
+  whiteKing = nullptr;
+  delete blackKing;
+  blackKing = nullptr;
+  delete whiteQueen;
+  whiteQueen = nullptr;
+  delete blackQueen;
+  blackQueen = nullptr;
+  delete whiteRook;
+  whiteRook = nullptr;
+  delete blackRook;
+  blackRook = nullptr;
+  delete whiteBishop;
+  whiteBishop = nullptr;
+  delete blackBishop;
+  blackBishop = nullptr;
+  delete whiteKnight;
+  whiteKnight = nullptr;
+  delete whitePawn;
+  whitePawn = nullptr;
+  delete blackPawn;
+  blackPawn = nullptr;
+}
 
 void ChessBoard::isValidMove(Move nextMove) {}
 

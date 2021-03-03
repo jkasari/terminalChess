@@ -4,6 +4,11 @@
 #include "Square.h"
 #include "Piece.h"
 #include "Queen.h"
+#include "King.h"
+#include "Rook.h"
+#include "Bishop.h"
+#include "Knight.h"
+#include "Pawn.h"
 #include <iostream>
 
 class ChessBoard {
@@ -12,6 +17,8 @@ class ChessBoard {
 
  public:
   ChessBoard ();
+
+  ~ChessBoard();
    /**
     * Checks to make sure the preposed move is valid relative to the current board setup.
     * It will cout a error message into the terminal the move is unvalid.

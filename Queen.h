@@ -20,9 +20,6 @@ class Queen : public Piece {
    */
   std::string getTerminalDisplay(void) const override;
 
- private:
-  const std::string terminalDisplay = {"\xE2\x99\x9B"};
-
 };
 
 #endif // Queen_h
