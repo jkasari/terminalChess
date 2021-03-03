@@ -6,7 +6,6 @@ std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
     for(int i = 0; i < 8; i++) {
         stream << "| ";
         for(int j = 0; j < 8; j++) {
-        //    stream << "\xE2\x99\x9B" << " | ";
             stream << chessBoard.displayPiece(i, j) << " | ";
         }
         if(i < 7) {
@@ -26,9 +25,10 @@ ChessBoard::ChessBoard() {
     }
 }
 
+
 void ChessBoard::isValidMove(Move nextMove) {}
 
-void ChessBoard::exacuteMove(Move nextMove) {}
+void ChessBoard::executeMove(Move nextMove) {}
 
 std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
     return board[row][col].getPieceDisplay();

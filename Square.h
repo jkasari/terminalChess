@@ -6,12 +6,12 @@
 class Square {
 
  public:
-  Square();
+  Square() {}
 
   /**
    * Changes the piece on a Square.
    */
-  void newPiece(Piece);
+  void newPiece(Piece*);
 
   /**
    * Returns the character string for the current |Piece| on the |Square|.
@@ -19,7 +19,7 @@ class Square {
   std::string getPieceDisplay(void) const;
 
  private:
-  Piece currentPiece;
+  Piece* currentPiece = nullptr;
 
 };
 

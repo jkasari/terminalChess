@@ -2,6 +2,8 @@
 #define ChessBoard_h
 #include "Move.h"
 #include "Square.h"
+#include "Piece.h"
+#include "Queen.h"
 #include <iostream>
 
 class ChessBoard {
@@ -19,7 +21,7 @@ class ChessBoard {
    /**
     * Actually exacutes the preposed move.
     */
-   void exacuteMove(Move);
+   void executeMove(Move);
 
   /**
    * Give the character string for each piece to the ostream operator.
