@@ -1,11 +1,24 @@
 #ifndef Queen_h
 #define Queen_h
+#include <vector>
+#include <string>
+#include "Piece.h"
 
-class Queen {
+using Location = std::pair<int8_t, int8_t>;
+
+class Queen : public Piece {
 
  public:
+  Queen(Color color) : Piece(color) {}
+    /**
+  * Returns the phsical moves a piece can make. This does factor in the board, but not other peices.
+  */
+  std::vector<Location> potentialMoves(Location) override;
 
- private:
+  /**
+   * Returns how the piece would like to be displayed in the terminal.
+   */
+  std::string getTerminalDisplay(void) const override;
 
 };
 

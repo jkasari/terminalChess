@@ -1,11 +1,25 @@
 #ifndef King_h
 #define King_h
+#include "Piece.h"
+#include <vector>
+#include <string>
 
-class King {
+
+using Location = std::pair<int8_t, int8_t>;
+
+class King : public Piece {
 
  public:
+  King(Color color) : Piece(color) {}
+    /**
+  * Returns the phsical moves a piece can make. This does factor in the board, but not other peices.
+  */
+  std::vector<Location> potentialMoves(Location) override;
 
- private:
+  /**
+   * Returns how the piece would like to be displayed in the terminal.
+   */
+  std::string getTerminalDisplay(void) const override;
 
 };
 

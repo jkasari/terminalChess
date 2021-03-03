@@ -5,22 +5,34 @@
 
 using Location = std::pair<int8_t, int8_t>;
 
+enum class Color {
+  Black,
+  White,
+};
+
 class Piece {
 
  public:
+
+  Piece() : Piece(Color::White) {}
+
+  Piece(Color color) : color(color) {}
+
+  Color getColor() const;
+
   /**
   * Returns the phsical moves a piece can make. This does factor in the board, but not other peices.
   */
-  std::vector<Location> potentialMoves(Location);
+  virtual std::vector<Location> potentialMoves(Location) { return std::vector<Location>(); };
 
   /**
    * Returns how the piece would like to be displayed in the terminal.
    */
-  std::string getTerminalDisplay(void) const;
+  virtual std::string getTerminalDisplay(void) const { return " "; }
 
  private:
-  bool Color;
-  std::string terminalDisplay = {"\xE2\x99\x9B"};
+  Color color;
+
 
 };
 

@@ -1,1 +1,14 @@
 #include "Queen.h"
+
+
+  std::vector<Location> Queen::potentialMoves(Location) {
+    return std::vector<Location>();
+  }
+
+  std::string Queen::getTerminalDisplay(void) const {
+    if(getColor() == Color::White) {
+      return "\xE2\x99\x9B";
+    } else {
+      return "\xE2\x99\x95";
+    }
+  }
