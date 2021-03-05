@@ -17,19 +17,23 @@ int main() {
   while(1) {
 
     try {
-      if(cycle % 2 == 0) {
+      if(board.isWhitesTurn()) {
         cout << "Your move white:" << endl;
       } else {
         cout << "Your move black:" << endl;
       }
       getline(cin, moveInput);
+
       nextMove = parsy.parseMove(moveInput);
       board.executeMove(nextMove);
+
+      // This just clears the terminal for the next board to be broadcasted.
       for(int i = 0; i < 100; ++i) {
         cout << endl;
       }
+
       cout << board << endl;
-      cycle++;
+      board.switchSides();
     } catch( const ParseError& parseError) {
       switch (parseError) {
         case ParseError::InvalidPiece: cout << endl << "!!! Invalid Piece !!!" << endl; break;

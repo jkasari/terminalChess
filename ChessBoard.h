@@ -38,7 +38,12 @@ class ChessBoard {
    /**
     * Changes whos turn it is to play.
     */
-   void switchSides(void);
+   void switchSides();
+
+   /**
+    * Returns true if its whites turn and false if its blacks turn.
+    */
+   bool isWhitesTurn();
 
  private:
   /**

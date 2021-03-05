@@ -67,7 +67,13 @@ std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
     return board[row][col].getPieceDisplay();
 }
 
-void ChessBoard::switchSides(void) {}
+void ChessBoard::switchSides() {
+    whitesTurn = !whitesTurn;
+}
+
+bool ChessBoard::isWhitesTurn() {
+   return whitesTurn;
+}
 
 bool ChessBoard::correctPiece(Move nextMove) {}
 
