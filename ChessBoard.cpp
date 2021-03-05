@@ -58,9 +58,8 @@ ChessBoard::ChessBoard() {
 
 
 void ChessBoard::isValidMove(Move nextMove) {
-    if(!correctPiece(nextMove)) {
-        throw(BoardError::MoveNotPossible);
-    }
+    if(!correctPiece(nextMove)) { throw(BoardError::MoveNotPossible); }
+    if(friendlyFire(nextMove))  { throw(BoardError::FriendlyFire);    }
 }
 
 void ChessBoard::executeMove(Move nextMove) {
@@ -95,7 +94,14 @@ bool ChessBoard::correctPiece(Move nextMove) {
     return board[row][col].getPiecePointer() == nextMove.getPiece();
 }
 
-bool ChessBoard::friendlyFire(Move nextMove) {}
+bool ChessBoard::friendlyFire(Move nextMove) {
+    uint8_t row = nextMove.getToLocation().row;
+    uint8_t col = nextMove.getToLocation().col;
+    if(!board[row][col].getPiecePointer()) {
+        return false;
+    }
+    return board[row][col].getPiecePointer()->getColor() == Color::White && isWhitesTurn();
+}
 
 bool ChessBoard::movePutsInCheck(Move nextMove) {}
 

@@ -13,6 +13,7 @@
 
 enum class BoardError {
   MoveNotPossible,
+  FriendlyFire,
 };
 
 bool operator==(const PieceType& pieceType, const Piece& piece);

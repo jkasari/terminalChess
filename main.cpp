@@ -43,7 +43,8 @@ int main() {
       cout << "     \"Piece A1 A2\"" << endl << endl;
     } catch (const BoardError& boardError) {
       switch (boardError) {
-        case BoardError::MoveNotPossible: cout << endl << "!!! This move is not possible !!!"; break;
+        case BoardError::MoveNotPossible: cout << endl << "!!! This Move is not Possible !!!"; break;
+        case BoardError::FriendlyFire: cout << endl << "!!! Friendly Fire !!!"; break;
       }
       cout << endl << endl;
     }
