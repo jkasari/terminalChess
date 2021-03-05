@@ -47,6 +47,12 @@ class Piece {
    */
   virtual PieceType getPieceType() const = 0;
 
+ protected:
+  /**
+   * Helper function that virtually moves the piece.
+   */
+  virtual Location movePiece(uint8_t, uint8_t, uint8_t) = 0;
+
  private:
   Color color;
 

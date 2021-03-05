@@ -12,3 +12,5 @@
       return "\xE2\x99\x95";
     }
   }
+
+  Location Queen::movePiece(uint8_t dirction, uint8_t row, uint8_t col) {}

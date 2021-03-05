@@ -12,3 +12,6 @@
       return "\xE2\x99\x96";
     }
   }
+
+
+  Location Rook::movePiece(uint8_t direction, uint8_t row, uint8_t col) {}

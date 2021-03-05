@@ -11,3 +11,5 @@
       return "\xE2\x99\x94";
     }
   }
+
+  Location King::movePiece(uint8_t direction, uint8_t row, uint8_t col) {}

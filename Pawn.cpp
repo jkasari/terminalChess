@@ -11,3 +11,5 @@
       return "\xE2\x99\x99";
     }
   }
+
+  Location Pawn::movePiece(uint8_t direction, uint8_t row, uint8_t col) {}
