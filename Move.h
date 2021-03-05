@@ -15,12 +15,12 @@ class Move {
   /**
    * Returns the |Location| that the |Piece| is moving to.
    */
-  Location getMoveToLocation() const;
+  Location getToLocation() const;
 
   /**
    * Returns the |Location| that the |Piece| is moving from.
    */
-  Location getMoveFromLocation() const;
+  Location getFromLocation() const;
 
   /**
    * Returns the |Piece| in the next move.

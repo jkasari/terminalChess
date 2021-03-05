@@ -7,11 +7,11 @@ Move::Move(PieceType pieceToMoveInput, Location fromLocationInput, Location toLo
     moveToLocation = toLocationInput;
 }
 
-Location Move::getMoveToLocation() const {
+Location Move::getToLocation() const {
     return moveToLocation;
 }
 
-Location Move::getMoveFromLocation() const {
+Location Move::getFromLocation() const {
     return moveFromLocation;
 }
 

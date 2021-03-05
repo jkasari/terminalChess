@@ -81,8 +81,8 @@ Location Parser::parseLocation(const std::string& str) {
     }
 
     return Location(
-        loweredStr[0] - 'a',
-        loweredStr[1] - '1'
+        loweredStr[1] = '8' - loweredStr[1],
+        loweredStr[0] - 'a'
     );
 
 }

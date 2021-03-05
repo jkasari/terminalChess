@@ -18,6 +18,8 @@ class Square {
    */
   std::string getPieceDisplay(void) const;
 
+  Piece* getPiecePointer();
+
  private:
   Piece* currentPiece = nullptr;
 

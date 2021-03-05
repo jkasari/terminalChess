@@ -21,6 +21,7 @@ enum class PieceType {
 };
 std::ostream& operator<<(std::ostream& stream, const PieceType& pieceType);
 
+
 class Piece {
 
  public:
@@ -34,19 +35,17 @@ class Piece {
   /**
   * Returns the phsical moves a piece can make. This does factor in the board, but not other peices.
   */
-  virtual std::vector<Location> potentialMoves(Location) { return std::vector<Location>(); };
+  virtual std::vector<Location> potentialMoves(Location) = 0;
 
   /**
    * Returns how the piece would like to be displayed in the terminal.
    */
-  virtual std::string getTerminalDisplay() const { return " "; }
+  virtual std::string getTerminalDisplay() const = 0;
 
   /**
    * Returns the |PieceType|.
    */
-  virtual PieceType getPieceType() const {
-    return PieceType::King;
-  }
+  virtual PieceType getPieceType() const = 0;
 
  private:
   Color color;

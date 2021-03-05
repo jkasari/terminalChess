@@ -11,6 +11,13 @@
 #include "Pawn.h"
 #include <iostream>
 
+enum class BoardError {
+  MoveNotPossible,
+  FriendlyFire,
+};
+
+bool operator==(const PieceType& pieceType, const Piece& piece);
+
 class ChessBoard {
 
     friend std::ostream& operator<<(std::ostream&, const ChessBoard&);
@@ -38,7 +45,12 @@ class ChessBoard {
    /**
     * Changes whos turn it is to play.
     */
-   void switchSides(void);
+   void switchSides();
+
+   /**
+    * Returns true if its whites turn and false if its blacks turn.
+    */
+   bool isWhitesTurn();
 
  private:
   /**
@@ -60,13 +72,7 @@ class ChessBoard {
     * Checks to see if you are currently in check, if so it makes sure your next move protects
     * the king.
     */
-   bool moveOutOfCheck(Move);
-
-   /**
-    * Checks to see if the new move falls on an enemys piece, if it does
-    * it removes the piece from the board.
-    */
-   void canCapturePiece(Move);
+   bool mustMoveOutOfCheck(Move);
 
    /**
     * This puts the opponent in check.

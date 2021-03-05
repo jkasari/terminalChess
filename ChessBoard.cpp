@@ -1,18 +1,25 @@
 #include "ChessBoard.h"
 
 
+
+bool operator==(const Piece* piece, const PieceType& pieceType) {
+    return pieceType == piece->getPieceType();
+}
+
+
 std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
-    stream << "+---+---+---+---+---+---+---+---+" << std::endl;
+    stream << "  +---+---+---+---+---+---+---+---+" << std::endl;
     for(int i = 0; i < 8; i++) {
-        stream << "| ";
+        stream << 8 - i << " | ";
         for(int j = 0; j < 8; j++) {
             stream << chessBoard.displayPiece(i, j) << " | ";
         }
         if(i < 7) {
-          stream << std::endl << "|---|---|---|---|---|---|---|---|" << std::endl;
+          stream << std::endl << "  |---|---|---|---|---|---|---|---|" << std::endl;
         }
     }
-    stream << std::endl << "+---+---+---+---+---+---+---+---+" << std::endl;
+    stream << std::endl << "  +---+---+---+---+---+---+---+---+";
+    stream << std::endl << "    A   B   C   D   E   F   G   H" << std::endl;
     return stream;
 }
 
@@ -50,25 +57,55 @@ ChessBoard::ChessBoard() {
 }
 
 
-void ChessBoard::isValidMove(Move nextMove) {}
+void ChessBoard::isValidMove(Move nextMove) {
+    if(!correctPiece(nextMove)) { throw(BoardError::MoveNotPossible); }
+    if(friendlyFire(nextMove))  { throw(BoardError::FriendlyFire);    }
+}
 
-void ChessBoard::executeMove(Move nextMove) {}
+void ChessBoard::executeMove(Move nextMove) {
+    isValidMove(nextMove);
+    uint8_t fromRow = nextMove.getFromLocation().row;
+    uint8_t fromCol = nextMove.getFromLocation().col;
+    uint8_t toRow = nextMove.getToLocation().row;
+    uint8_t toCol = nextMove.getToLocation().col;
+
+    board[toRow][toCol] = board[fromRow][fromCol];
+    board[fromRow][fromCol].newPiece(nullptr);
+}
 
 std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
     return board[row][col].getPieceDisplay();
 }
 
-void ChessBoard::switchSides(void) {}
+void ChessBoard::switchSides() {
+    whitesTurn = !whitesTurn;
+}
 
-bool ChessBoard::correctPiece(Move nextMove) {}
+bool ChessBoard::isWhitesTurn() {
+   return whitesTurn;
+}
 
-bool ChessBoard::friendlyFire(Move nextMove) {}
+bool ChessBoard::correctPiece(Move nextMove) {
+    uint8_t row = nextMove.getFromLocation().row;
+    uint8_t col = nextMove.getFromLocation().col;
+    if(!board[row][col].getPiecePointer()) {
+        return false;
+    }
+    return board[row][col].getPiecePointer() == nextMove.getPiece();
+}
+
+bool ChessBoard::friendlyFire(Move nextMove) {
+    uint8_t row = nextMove.getToLocation().row;
+    uint8_t col = nextMove.getToLocation().col;
+    if(!board[row][col].getPiecePointer()) {
+        return false;
+    }
+    return board[row][col].getPiecePointer()->getColor() == Color::White && isWhitesTurn();
+}
 
 bool ChessBoard::movePutsInCheck(Move nextMove) {}
 
-bool ChessBoard::moveOutOfCheck(Move nextMove) {}
-
-void ChessBoard::canCapturePiece(Move nextMove) {}
+bool ChessBoard::mustMoveOutOfCheck(Move nextMove) {}
 
 void ChessBoard::inCheck(Move nextMove) {}
 
