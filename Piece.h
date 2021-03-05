@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "Location.h"
+#include <iostream>
 
 
 enum class Color {
@@ -18,6 +19,7 @@ enum class PieceType {
   Knight,
   Pawn,
 };
+std::ostream& operator<<(std::ostream& stream, const PieceType& pieceType);
 
 class Piece {
 

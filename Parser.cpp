@@ -1,24 +1,40 @@
 #include "Parser.h"
 
+std::ostream& operator<<(std::ostream& stream, const ParseError& err) {
+  switch (err) {
+    case ParseError::InvalidPiece: return stream << "InvalidPiece";
+    case ParseError::InvalidLocation: return stream << "InvalidLocation";
+  }
+  return stream;
+}
+
 Move Parser::parseMove(const std::string& input) const {
-    int32_t index = 0;
+    if(input.empty()) {
+        throw ParseError::InvalidPiece;
+    }
+    size_t index = 0;
+    size_t lastIndex = input.length() - 1;
     std::string pieceTypeInput;
-    while(input[index] != ' ') {
+    while(index <= lastIndex && input[index] != ' ') {
         pieceTypeInput += input[index];
         index++;
     }
+    index++;
     PieceType pieceType = parsePieceType(pieceTypeInput);
 
     std::string fromLocationInput;
-    fromLocationInput += input[index + 1];
-    fromLocationInput += input[index + 2];
-
+    while(index <= lastIndex && input[index] != ' ') {
+        fromLocationInput += input[index];
+        index++;
+    }
+    index++;
     Location fromLocation = parseLocation(fromLocationInput);
 
     std::string toLocationInput;
-    toLocationInput += input[index + 4];
-    toLocationInput += input[index + 5];
-
+    while(index <= lastIndex) {
+        toLocationInput += input[index];
+        index++;
+    }
     Location toLocation = parseLocation(toLocationInput);
 
     return Move(
@@ -66,7 +82,7 @@ Location Parser::parseLocation(const std::string& str) {
 
     return Location(
         loweredStr[0] - 'a',
-        loweredStr[1] - '0'
+        loweredStr[1] - '1'
     );
 
 }
