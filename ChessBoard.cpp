@@ -60,6 +60,7 @@ ChessBoard::ChessBoard() {
 void ChessBoard::isValidMove(Move nextMove) {
     if(!correctPiece(nextMove)) { throw(BoardError::MoveNotPossible); }
     if(friendlyFire(nextMove))  { throw(BoardError::FriendlyFire);    }
+    if(!correctColor(nextMove))  {  throw(BoardError::IncorrectColor); }
 }
 
 void ChessBoard::executeMove(Move nextMove) {
@@ -78,11 +79,15 @@ std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
 }
 
 void ChessBoard::switchSides() {
-    whitesTurn = !whitesTurn;
+    if(turnColor == Color::White) {
+        turnColor = Color::Black;
+    } else {
+        turnColor = Color::White;
+    }
 }
 
-bool ChessBoard::isWhitesTurn() {
-   return whitesTurn;
+Color ChessBoard::whosTurn() {
+   return turnColor;
 }
 
 bool ChessBoard::correctPiece(Move nextMove) {
@@ -100,7 +105,15 @@ bool ChessBoard::friendlyFire(Move nextMove) {
     if(!board[row][col].getPiecePointer()) {
         return false;
     }
-    return board[row][col].getPiecePointer()->getColor() == Color::White && isWhitesTurn();
+    return board[row][col].getPiecePointer()->getColor() == turnColor;
+}
+bool ChessBoard::correctColor(Move nextMove) {
+    uint8_t row = nextMove.getFromLocation().row;
+    uint8_t col = nextMove.getFromLocation().col;
+    if(!board[row][col].getPiecePointer()) {
+        return true;
+    }
+    return board[row][col].getPiecePointer()->getColor() == turnColor;
 }
 
 bool ChessBoard::movePutsInCheck(Move nextMove) {}
