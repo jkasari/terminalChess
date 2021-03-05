@@ -12,10 +12,10 @@ int main() {
     unit_test("Valid Parse") may_throw({
       Move move1 = parsy.parseMove("Knight A1 A2");
       assert_eq(PieceType::Knight, move1.getPiece());
-      assert_eq(0, move1.getMoveFromLocation().row);
+      assert_eq(7, move1.getMoveFromLocation().row);
       assert_eq(0, move1.getMoveFromLocation().col);
-      assert_eq(0, move1.getMoveToLocation().row);
-      assert_eq(1, move1.getMoveToLocation().col);
+      assert_eq(6, move1.getMoveToLocation().row);
+      assert_eq(0, move1.getMoveToLocation().col);
     })
     unit_test("Invalid Piece") {
       try {
