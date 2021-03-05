@@ -1,6 +1,5 @@
 #include "Pawn.h"
 
-
   std::vector<Location> Pawn::potentialMoves(Location) {
     return std::vector<Location>();
   }

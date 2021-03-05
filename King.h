@@ -21,6 +21,9 @@ class King : public Piece {
    */
   std::string getTerminalDisplay(void) const override;
 
+  PieceType getPieceType() const override { return PieceType::King; }
+
+
 };
 
 #endif // King_h

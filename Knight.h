@@ -20,6 +20,11 @@ class Knight : public Piece {
    */
   std::string getTerminalDisplay(void) const override;
 
+  PieceType getPieceType() const override { return PieceType::Knight; }
+
+  private:
+   static PieceType pieceType;
+
 };
 
 #endif // Knight_h

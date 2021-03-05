@@ -37,7 +37,14 @@ class Piece {
   /**
    * Returns how the piece would like to be displayed in the terminal.
    */
-  virtual std::string getTerminalDisplay(void) const { return " "; }
+  virtual std::string getTerminalDisplay() const { return " "; }
+
+  /**
+   * Returns the |PieceType|.
+   */
+  virtual PieceType getPieceType() const {
+    return PieceType::King;
+  }
 
  private:
   Color color;

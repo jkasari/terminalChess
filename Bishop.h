@@ -20,6 +20,9 @@ class Bishop : public Piece {
    */
   std::string getTerminalDisplay(void) const override;
 
+  PieceType getPieceType() const override { return PieceType::Bishop; }
+
+
 };
 
 #endif // Bishop_h

@@ -1,7 +1,16 @@
 #ifndef Parser_h
 #define Parser_h
 #include "Move.h"
+#include "Piece.h"
+#include "Location.h"
 #include <vector>
+
+enum class ParseError {
+  InvalidPiece,
+  InvalidLocation,
+
+};
+
 
 class Parser {
 
@@ -19,6 +28,13 @@ class Parser {
    * Makes sure the second two arguments are valid locations.
    */
   bool validLocationCheck(char[2], char[2]);
+
+  static PieceType parsePieceType(const std::string&);
+
+  static Location parseLocation(const std::string&);
+
+ private:
+  static std::string toLower(const std::string&);
 
 };
 

@@ -20,6 +20,8 @@ class Pawn : public Piece {
    */
   std::string getTerminalDisplay(void) const override;
 
+  PieceType getPieceType() const override { return PieceType::Pawn; }
+
 };
 
 #endif // Pawn_h
