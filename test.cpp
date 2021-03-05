@@ -1,13 +1,29 @@
 #include <iostream>
 #include "nuttiest/nuttiest.hpp"
+#include "Move.h"
+#include "Parser.h"
 
 using namespace std;
 using namespace nuttiest;
 
 int main() {
-  section("test") {
-    unit_test("testCase") {
-      assert_eq(true, false);
+  section("Parser") {
+    Parser parsy;
+    unit_test("Valid Parse") may_throw({
+      Move move1 = parsy.parseMove("Knight A1 A2");
+      assert_eq(PieceType::Knight, move1.getPiece());
+      assert_eq(0, move1.getMoveFromLocation().row);
+      assert_eq(0, move1.getMoveFromLocation().col);
+      assert_eq(0, move1.getMoveToLocation().row);
+      assert_eq(1, move1.getMoveToLocation().col);
+    })
+    unit_test("Invalid Piece") {
+      try {
+        Move move1 = parsy.parseMove("Kite A1 A2");
+        fail_test("Expected throw");
+      } catch(const ParseError& parseError) {
+        assert_eq(parseError, ParseError::InvalidPiece);
+      }
     }
   }
 

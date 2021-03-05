@@ -3,9 +3,9 @@
 #include "Piece.h"
 #include <vector>
 #include <string>
+#include "Location.h"
 
 
-using Location = std::pair<int8_t, int8_t>;
 
 class King : public Piece {
 
@@ -20,6 +20,9 @@ class King : public Piece {
    * Returns how the piece would like to be displayed in the terminal.
    */
   std::string getTerminalDisplay(void) const override;
+
+  PieceType getPieceType() const override { return PieceType::King; }
+
 
 };
 

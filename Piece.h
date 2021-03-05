@@ -2,13 +2,24 @@
 #define Piece_h
 #include <vector>
 #include <string>
+#include "Location.h"
+#include <iostream>
 
-using Location = std::pair<int8_t, int8_t>;
 
 enum class Color {
   Black,
   White,
 };
+
+enum class PieceType {
+  King,
+  Queen,
+  Rook,
+  Bishop,
+  Knight,
+  Pawn,
+};
+std::ostream& operator<<(std::ostream& stream, const PieceType& pieceType);
 
 class Piece {
 
@@ -28,7 +39,14 @@ class Piece {
   /**
    * Returns how the piece would like to be displayed in the terminal.
    */
-  virtual std::string getTerminalDisplay(void) const { return " "; }
+  virtual std::string getTerminalDisplay() const { return " "; }
+
+  /**
+   * Returns the |PieceType|.
+   */
+  virtual PieceType getPieceType() const {
+    return PieceType::King;
+  }
 
  private:
   Color color;

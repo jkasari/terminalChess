@@ -1,35 +1,38 @@
-main: ChessBoard
-	g++ -std=c++17 main.cpp ChessBoard.o Referee.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o run
+main: ChessBoard Move Parser Square Piece King Queen Rook Bishop Knight Pawn
+	g++ -std=c++17 main.cpp ChessBoard.o Move.o Parser.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o run
 
-test: ChessBoard
-	g++ -std=c++17 test.cpp ChessBoard.o Referee.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o test
+test: ChessBoard Move Parser Square Piece King Queen Rook Bishop Knight Pawn
+	g++ -std=c++17 test.cpp ChessBoard.o Move.o Parser.o Square.o Piece.o King.o Queen.o Rook.o Bishop.o Knight.o Pawn.o -o test
 	./test
 
-ChessBoard: Referee
+ChessBoard:
 	g++ -std=c++17 ChessBoard.cpp -c
 
-Referee: Square
-	g++ -std=c++17 Referee.cpp -c
+Move:
+	g++ -std=c++17 Move.cpp -c
 
-Square: Piece
+Parser:
+	g++ -std=c++17 Parser.cpp -c
+
+Square:
 	g++ -std=c++17 Square.cpp -c
 
-Piece: King
+Piece:
 	g++ -std=c++17 Piece.cpp -c
 
-King: Queen
+King:
 	g++ -std=c++17 King.cpp -c
 
-Queen: Rook
+Queen:
 	g++ -std=c++17 Queen.cpp  -c
 
-Rook: Bishop
+Rook:
 	g++ -std=c++17 Rook.cpp -c
 
-Bishop: Knight
+Bishop:
 	g++ -std=c++17 Bishop.cpp -c
 
-Knight: Pawn
+Knight:
 	g++ -std=c++17 Knight.cpp -c
 
 Pawn:
@@ -38,4 +41,4 @@ Pawn:
 clean:
 	rm -rf run test *.o
 	
-.PHONY: main test clean Pawn Bishop Rook Queen Piece Square Referee ChessBoard
+.PHONY: main test clean Pawn Bishop Rook Queen Piece Square Parser ChessBoard

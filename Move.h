@@ -1,31 +1,36 @@
 #ifndef Move_h
 #define Move_h
+#include <string>
+#include "Location.h"
 #include "Piece.h"
-
-using Location = std::pair<int8_t, int8_t>;
 
 class Move {
 
  public:
+ Move() {}
   /**
-   * Creates a move based on a piece and preposed location.
-   * This takes the locations in chess notation. It stores them as a |Location|.
    */
-  Move(Piece, char[2], char[2]);
+  Move(PieceType, Location, Location);
 
   /**
-   * Returns the moves |Location|;
+   * Returns the |Location| that the |Piece| is moving to.
    */
-  Location getLocation(void);
+  Location getMoveToLocation() const;
+
+  /**
+   * Returns the |Location| that the |Piece| is moving from.
+   */
+  Location getMoveFromLocation() const;
 
   /**
    * Returns the |Piece| in the next move.
    */
-  Piece getPiece(void);
+  PieceType getPiece() const;
 
  private:
-  Piece pieceToMove;
-  Location newLocation;
+  PieceType pieceToMove;
+  Location moveToLocation;
+  Location moveFromLocation;
 
 };
 
