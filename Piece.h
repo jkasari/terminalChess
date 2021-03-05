@@ -2,12 +2,21 @@
 #define Piece_h
 #include <vector>
 #include <string>
+#include "Location.h"
 
-using Location = std::pair<int8_t, int8_t>;
 
 enum class Color {
   Black,
   White,
+};
+
+enum class PieceType {
+  King,
+  Queen,
+  Rook,
+  Bishop,
+  Knight,
+  Pawn,
 };
 
 class Piece {

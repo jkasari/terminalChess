@@ -3,8 +3,8 @@
 #include <vector>
 #include <string>
 #include "Piece.h"
+#include "Location.h"
 
-using Location = std::pair<int8_t, int8_t>;
 
 class Queen : public Piece {
 

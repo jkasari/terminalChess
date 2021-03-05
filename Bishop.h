@@ -3,9 +3,8 @@
 #include "Piece.h"
 #include <vector>
 #include <string>
+#include "Location.h"
 
-
-using Location = std::pair<int8_t, int8_t>;
 
 class Bishop : public Piece {
 

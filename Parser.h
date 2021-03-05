@@ -1,14 +1,15 @@
-#ifndef Referee_h
-#define Referee_h
+#ifndef Parser_h
+#define Parser_h
+#include "Move.h"
 #include <vector>
 
-struct Referee {
+class Parser {
 
-  /**
-   * Checks to make sure you typed the correct amount of arguments.
-   */
-  bool correctNumberOfArgs(uint8_t);
+ public:
+  Move parseMove(const std::string&) const;
 
+
+ private:
   /**
    * Makes sure the first argument is a valid piece to move.
    */
@@ -21,4 +22,4 @@ struct Referee {
 
 };
 
-#endif // Referee_h
+#endif // Parser_h

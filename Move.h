@@ -1,12 +1,12 @@
 #ifndef Move_h
 #define Move_h
-#include "Piece.h"
-
-using Location = std::pair<int8_t, int8_t>;
+#include <string>
+#include "Location.h"
 
 class Move {
 
  public:
+ Move() {}
   /**
    * Creates a move based on a piece and preposed location.
    * This takes the locations in chess notation. It stores them as a |Location|.
@@ -16,23 +16,23 @@ class Move {
   /**
    * Returns the |Location| that the |Piece| is moving to.
    */
-  Location getMoveToLocation(void);
+  Location getMoveToLocation();
 
   /**
    * Returns the |Location| that the |Piece| is moving from.
    */
-  Location getMoveFromLocation(void);
+  Location getMoveFromLocation();
 
   /**
    * Returns the |Piece| in the next move.
    */
-  Piece getPiece(void);
+  std::string getPiece();
 
  private:
   /**
    * Breaks of the name of the |Piece| off of the string used to create the |Move|.
    */
-  std::string getPieceName(std::string);
+  std::string extractPieceName(std::string);
 
   /**
    * Takes a string of two chars representing chessnotation and returns a |Location|.
@@ -43,13 +43,14 @@ class Move {
    * Pulls the second argument out of a string. This argument needs to be chess notation.
    * Such as "E4" or "B7".
    */
-  std::string extractFirstLocation(std::string);
+  Location extractFirstLocation(std::string);
 
   /**
    * Pulls the second argument out of a string. This argument needs to be in chess notation.
    * Such as "E4" or "B7".
    */
-  std::string extractSecondLocation(std::string);
+  Location extractSecondLocation(std::string);
+
   std::string pieceToMove;
   Location moveToLocation;
   Location moveFromLocation;

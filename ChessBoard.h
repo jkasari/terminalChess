@@ -18,7 +18,6 @@ class ChessBoard {
  public:
   ChessBoard ();
 
-  ~ChessBoard();
    /**
     * Checks to make sure the preposed move is valid relative to the current board setup.
     * It will cout a error message into the terminal the move is unvalid.
@@ -85,6 +84,43 @@ class ChessBoard {
   bool checkMate = false;
   bool whiteCheck = false;
   bool blackCheck = false;
+  King whiteKing = King(Color::White);
+  King blackKing = King(Color::Black);
+  Queen whiteQueen = Queen(Color::White);
+  Queen blackQueen = Queen(Color::Black);
+  Rook whiteRookA = Rook(Color::White);
+  Rook whiteRookB = Rook(Color::White);
+  Rook blackRookA = Rook(Color::Black);
+  Rook blackRookB = Rook(Color::Black);
+  Bishop whiteBishopA = Bishop(Color::White);
+  Bishop whiteBishopB = Bishop(Color::White);
+  Bishop blackBishopA = Bishop(Color::Black);
+  Bishop blackBishopB = Bishop(Color::Black);
+  Knight whiteKnightA = Knight(Color::White);
+  Knight whiteKnightB = Knight(Color::White);
+  Knight blackKnightA = Knight(Color::Black);
+  Knight blackKnightB = Knight(Color::Black);
+  Pawn whitePawns[8] {
+    Pawn(Color::White),
+    Pawn(Color::White),
+    Pawn(Color::White),
+    Pawn(Color::White),
+    Pawn(Color::White),
+    Pawn(Color::White),
+    Pawn(Color::White),
+    Pawn(Color::White),
+  };
+
+  Pawn blackPawns[8] {
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+    Pawn(Color::Black),
+  };
 
 };
 
