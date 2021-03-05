@@ -34,13 +34,18 @@ int main() {
 
       cout << board << endl;
       board.switchSides();
-    } catch( const ParseError& parseError) {
+    } catch(const ParseError& parseError) {
       switch (parseError) {
         case ParseError::InvalidPiece: cout << endl << "!!! Invalid Piece !!!" << endl; break;
         case ParseError::InvalidLocation: cout << endl << "!!! Invalid Location !!!" << endl; break;
       }
       cout << endl << "Moves must be in the following form:" << endl << endl;
       cout << "     \"Piece A1 A2\"" << endl << endl;
+    } catch (const BoardError& boardError) {
+      switch (boardError) {
+        case BoardError::MoveNotPossible: cout << endl << "!!! This move is not possible !!!"; break;
+      }
+      cout << endl << endl;
     }
 
   }

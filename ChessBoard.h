@@ -11,6 +11,12 @@
 #include "Pawn.h"
 #include <iostream>
 
+enum class BoardError {
+  MoveNotPossible,
+};
+
+bool operator==(const PieceType& pieceType, const Piece& piece);
+
 class ChessBoard {
 
     friend std::ostream& operator<<(std::ostream&, const ChessBoard&);

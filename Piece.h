@@ -21,6 +21,7 @@ enum class PieceType {
 };
 std::ostream& operator<<(std::ostream& stream, const PieceType& pieceType);
 
+
 class Piece {
 
  public:
@@ -44,9 +45,7 @@ class Piece {
   /**
    * Returns the |PieceType|.
    */
-  virtual PieceType getPieceType() const {
-    return PieceType::King;
-  }
+  virtual PieceType getPieceType() const = 0;
 
  private:
   Color color;

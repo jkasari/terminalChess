@@ -9,3 +9,7 @@ std::string Square::getPieceDisplay(void) const {
     return " ";
   }
 }
+
+Piece* Square::getPiecePointer() {
+  return currentPiece;
+}

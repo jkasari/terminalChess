@@ -1,6 +1,12 @@
 #include "ChessBoard.h"
 
 
+
+bool operator==(const Piece* piece, const PieceType& pieceType) {
+    return pieceType == piece->getPieceType();
+}
+
+
 std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
     stream << "  +---+---+---+---+---+---+---+---+" << std::endl;
     for(int i = 0; i < 8; i++) {
@@ -51,9 +57,14 @@ ChessBoard::ChessBoard() {
 }
 
 
-void ChessBoard::isValidMove(Move nextMove) {}
+void ChessBoard::isValidMove(Move nextMove) {
+    if(!correctPiece(nextMove)) {
+        throw(BoardError::MoveNotPossible);
+    }
+}
 
 void ChessBoard::executeMove(Move nextMove) {
+    isValidMove(nextMove);
     uint8_t fromRow = nextMove.getFromLocation().row;
     uint8_t fromCol = nextMove.getFromLocation().col;
     uint8_t toRow = nextMove.getToLocation().row;
@@ -75,7 +86,14 @@ bool ChessBoard::isWhitesTurn() {
    return whitesTurn;
 }
 
-bool ChessBoard::correctPiece(Move nextMove) {}
+bool ChessBoard::correctPiece(Move nextMove) {
+    uint8_t row = nextMove.getFromLocation().row;
+    uint8_t col = nextMove.getFromLocation().col;
+    if(!board[row][col].getPiecePointer()) {
+        return false;
+    }
+    return board[row][col].getPiecePointer() == nextMove.getPiece();
+}
 
 bool ChessBoard::friendlyFire(Move nextMove) {}
 
