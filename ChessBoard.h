@@ -72,13 +72,7 @@ class ChessBoard {
     * Checks to see if you are currently in check, if so it makes sure your next move protects
     * the king.
     */
-   bool moveOutOfCheck(Move);
-
-   /**
-    * Checks to see if the new move falls on an enemys piece, if it does
-    * it removes the piece from the board.
-    */
-   void canCapturePiece(Move);
+   bool mustMoveOutOfCheck(Move);
 
    /**
     * This puts the opponent in check.

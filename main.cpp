@@ -39,7 +39,7 @@ int main() {
         case ParseError::InvalidPiece: cout << endl << "!!! Invalid Piece !!!" << endl; break;
         case ParseError::InvalidLocation: cout << endl << "!!! Invalid Location !!!" << endl; break;
       }
-      cout << endl << "Moves must be in the following form:" << endl << endl;
+      cout << endl << "Moves must be on the board and in the following form:" << endl << endl;
       cout << "     \"Piece A1 A2\"" << endl << endl;
     } catch (const BoardError& boardError) {
       switch (boardError) {

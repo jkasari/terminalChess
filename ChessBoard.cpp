@@ -105,9 +105,7 @@ bool ChessBoard::friendlyFire(Move nextMove) {
 
 bool ChessBoard::movePutsInCheck(Move nextMove) {}
 
-bool ChessBoard::moveOutOfCheck(Move nextMove) {}
-
-void ChessBoard::canCapturePiece(Move nextMove) {}
+bool ChessBoard::mustMoveOutOfCheck(Move nextMove) {}
 
 void ChessBoard::inCheck(Move nextMove) {}
 
