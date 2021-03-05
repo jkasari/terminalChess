@@ -53,7 +53,15 @@ ChessBoard::ChessBoard() {
 
 void ChessBoard::isValidMove(Move nextMove) {}
 
-void ChessBoard::executeMove(Move nextMove) {}
+void ChessBoard::executeMove(Move nextMove) {
+    uint8_t fromRow = nextMove.getFromLocation().row;
+    uint8_t fromCol = nextMove.getFromLocation().col;
+    uint8_t toRow = nextMove.getToLocation().row;
+    uint8_t toCol = nextMove.getToLocation().col;
+
+    board[toRow][toCol] = board[fromRow][fromCol];
+    board[fromRow][fromCol].newPiece(nullptr);
+}
 
 std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
     return board[row][col].getPieceDisplay();
