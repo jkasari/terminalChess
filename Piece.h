@@ -51,7 +51,7 @@ class Piece {
   /**
    * Helper function that virtually moves the piece.
    */
-  virtual Location movePiece(uint8_t, uint8_t, uint8_t) = 0;
+  virtual Location movePiece(uint8_t, Location) = 0;
 
  private:
   Color color;

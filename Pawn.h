@@ -26,7 +26,7 @@ class Pawn : public Piece {
   /**
    * Helper function that virtually moves the piece.
    */
-  Location movePiece(uint8_t, uint8_t, uint8_t) override;
+  Location movePiece(uint8_t, Location) override;
 
 };
 

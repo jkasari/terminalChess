@@ -15,6 +15,7 @@ enum class BoardError {
   MoveNotPossible,
   FriendlyFire,
   IncorrectColor,
+  PieceCantMoveThere,
 };
 
 bool operator==(const PieceType& pieceType, const Piece& piece);
@@ -72,18 +73,23 @@ class ChessBoard {
    /**
     * Checks to make sure the new move doesn't put you in check.
     */
-   bool movePutsInCheck(Move);
+  bool movePutsInCheck(Move);
 
    /**
     * Checks to see if you are currently in check, if so it makes sure your next move protects
     * the king.
     */
-   bool mustMoveOutOfCheck(Move);
+  bool mustMoveOutOfCheck(Move);
+
+  /**
+   * Checks the see if the preposed moves location lines up with how the piece actually moves.
+   */
+  bool pieceCantMoveThere(Move);
 
    /**
     * This puts the opponent in check.
     */
-   void inCheck(Move);
+  void inCheck(Move);
 
    /**
     * This puts the opponent in checkmate.

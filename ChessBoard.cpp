@@ -6,6 +6,9 @@ bool operator==(const Piece* piece, const PieceType& pieceType) {
     return pieceType == piece->getPieceType();
 }
 
+bool operator==(const Location location1, const Location location2) {
+    return (location1.row == location2.row && location1.col == location2.col);
+}
 
 std::ostream& operator<<(std::ostream& stream, const ChessBoard& chessBoard) {
     stream << "  +---+---+---+---+---+---+---+---+" << std::endl;
@@ -58,9 +61,10 @@ ChessBoard::ChessBoard() {
 
 
 void ChessBoard::isValidMove(Move nextMove) {
-    if(!correctPiece(nextMove)) { throw(BoardError::MoveNotPossible); }
-    if(friendlyFire(nextMove))  { throw(BoardError::FriendlyFire);    }
-    if(!correctColor(nextMove))  {  throw(BoardError::IncorrectColor); }
+    if(!correctPiece(nextMove))      { throw(BoardError::MoveNotPossible);    }
+    if(friendlyFire(nextMove))       { throw(BoardError::FriendlyFire);       }
+    if(!correctColor(nextMove))      { throw(BoardError::IncorrectColor);     }
+    if(pieceCantMoveThere(nextMove)) { throw(BoardError::PieceCantMoveThere); }
 }
 
 void ChessBoard::executeMove(Move nextMove) {
@@ -116,7 +120,34 @@ bool ChessBoard::correctColor(Move nextMove) {
     return board[row][col].getPiecePointer()->getColor() == turnColor;
 }
 
-bool ChessBoard::movePutsInCheck(Move nextMove) {}
+bool ChessBoard::movePutsInCheck(Move nextMove) {
+    std::vector<Location> movesOnBoard;
+    // go across the rows of squares
+      // go down the cols of squares
+        // check if their are any pieces of the opposing color
+        // if there are, then push_back their moves.
+    // then run a loop through ever one of those moves
+    // check to see your king shares a location with any of them!
+}
+
+bool ChessBoard::pieceCantMoveThere(Move nextMove) {
+    std::vector<Location> validMoves;
+    Location currentLocation = nextMove.getFromLocation();
+    Location futureLocation = nextMove.getToLocation();
+
+    switch(nextMove.getPiece()) {
+      case PieceType::Bishop:
+        validMoves = whiteBishopA.potentialMoves(currentLocation);
+        for(int i = 0; i < validMoves.size(); ++i) {
+          if(futureLocation == validMoves[i]) {
+              return false;
+          }
+        }
+        return true;
+    }
+    return false;
+
+}
 
 bool ChessBoard::mustMoveOutOfCheck(Move nextMove) {}
 

@@ -23,7 +23,7 @@ class Bishop : public Piece {
   PieceType getPieceType() const override { return PieceType::Bishop; }
 
  private:
-  Location movePiece(uint8_t, uint8_t, uint8_t) override;
+  Location movePiece(uint8_t, Location) override;
 
 };
 

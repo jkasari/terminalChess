@@ -2,13 +2,18 @@
 
 
   std::vector<Location> Bishop::potentialMoves(Location location) {
-    uint8_t row = location.row;
-    uint8_t col = location.col;
     std::vector<Location> moves;
-    while(0 <= row && row < 8) {
-      row++;
-      col++;
+    Location potentialMove = location;
+    uint8_t boardLimit = location.row;
+    for(int moveIndex = 0; moveIndex < 4; ++moveIndex) {
+      while(0 <= boardLimit && boardLimit < 8) {
+        moves.push_back(potentialMove);
+        potentialMove = movePiece(moveIndex, potentialMove);
+        boardLimit = potentialMove.row;
+      }
+      potentialMove = location;
     }
+    return moves;
   }
 
   std::string Bishop::getTerminalDisplay(void) const {
@@ -19,7 +24,9 @@
     }
   }
 
-Location Bishop::movePiece(uint8_t direction, uint8_t row, uint8_t col) {
+Location Bishop::movePiece(uint8_t direction, Location location) {
+  uint8_t row = location.row;
+  uint8_t col = location.col;
   if(direction > 3) {
     return Location(0, 0);
   }

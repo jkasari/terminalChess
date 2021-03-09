@@ -14,4 +14,4 @@
   }
 
 
-  Location Rook::movePiece(uint8_t direction, uint8_t row, uint8_t col) {}
+  Location Rook::movePiece(uint8_t direction, Location location) {}
