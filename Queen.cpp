@@ -1,8 +1,19 @@
 #include "Queen.h"
 
 
-  std::vector<Location> Queen::potentialMoves(Location) {
-    return std::vector<Location>();
+  std::vector<Location> Queen::potentialMoves(Location location) {
+    std::vector<Location> moves;
+    Location potentialMove = location;
+    uint8_t boardLimit = location.row;
+    for(int moveIndex = 0; moveIndex < 8; ++moveIndex) {
+      while(0 <= boardLimit && boardLimit < 8) {
+        moves.push_back(potentialMove);
+        potentialMove = movePiece(moveIndex, potentialMove);
+        boardLimit = potentialMove.row;
+      }
+      potentialMove = location;
+    }
+    return moves;
   }
 
   std::string Queen::getTerminalDisplay(void) const {
@@ -13,4 +24,21 @@
     }
   }
 
-  Location Queen::movePiece(uint8_t dirction, Location location) {}
+Location Queen::movePiece(uint8_t direction, Location location) {
+  uint8_t row = location.row;
+  uint8_t col = location.col;
+  if(direction > 7) {
+    return Location(0, 0);
+  }
+  switch(direction) {
+   case 0: return Location(row + 1, col);
+   case 1: return Location(row + 1, col + 1);
+   case 2: return Location(row, col - 1);
+   case 3: return Location(row + 1, col + 1);
+   case 4: return Location(row - 1, col);
+   case 5: return Location(row - 1, col + 1);
+   case 6: return Location(row, col - 1);
+   case 7: return Location(row - 1, col - 1);
+  }
+  return Location(0, 0);
+}

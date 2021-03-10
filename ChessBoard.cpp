@@ -134,19 +134,40 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
     std::vector<Location> validMoves;
     Location currentLocation = nextMove.getFromLocation();
     Location futureLocation = nextMove.getToLocation();
+    PieceType nextPiece = nextMove.getPiece();
 
+    if (
+        nextPiece == PieceType::King ||
+        nextPiece == PieceType::Bishop ||
+        nextPiece == PieceType::Rook ||
+        nextPiece == PieceType::Queen ||
+        nextPiece == PieceType::Knight
+    ) {
     switch(nextMove.getPiece()) {
+      case PieceType::King:
+        validMoves = whiteKing.potentialMoves(currentLocation);
+        break;
+      case PieceType::Queen:
+        validMoves = whiteQueen.potentialMoves(currentLocation);
+        break;
       case PieceType::Bishop:
         validMoves = whiteBishopA.potentialMoves(currentLocation);
-        for(int i = 0; i < validMoves.size(); ++i) {
-          if(futureLocation == validMoves[i]) {
-              return false;
-          }
+        break;
+      case PieceType::Knight:
+        validMoves = whiteKnightA.potentialMoves(currentLocation);
+        break;
+      case PieceType::Rook:
+        validMoves = whiteRookA.potentialMoves(currentLocation);
+        break;
+    }
+    for(int i = 0; i < validMoves.size(); ++i) {
+       if(futureLocation == validMoves[i]) {
+            return false;
         }
-        return true;
+    }
+    return true;
     }
     return false;
-
 }
 
 bool ChessBoard::mustMoveOutOfCheck(Move nextMove) {}
