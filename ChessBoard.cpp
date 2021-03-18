@@ -33,8 +33,8 @@ ChessBoard::ChessBoard() {
             board[i][j] = sqr;
         }
     }
-    board[0][3].newPiece(&blackKing);
-    board[0][4].newPiece(&blackQueen);
+    board[0][4].newPiece(&blackKing);
+    board[0][3].newPiece(&blackQueen);
     board[0][5].newPiece(&blackBishopA);
     board[0][2].newPiece(&blackBishopB);
     board[0][6].newPiece(&blackKnightA);
@@ -136,13 +136,6 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
     Location futureLocation = nextMove.getToLocation();
     PieceType nextPiece = nextMove.getPiece();
 
-    if (
-        nextPiece == PieceType::King ||
-        nextPiece == PieceType::Bishop ||
-        nextPiece == PieceType::Rook ||
-        nextPiece == PieceType::Queen ||
-        nextPiece == PieceType::Knight
-    ) {
     switch(nextMove.getPiece()) {
       case PieceType::King:
         validMoves = whiteKing.potentialMoves(currentLocation);
@@ -150,15 +143,23 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
       case PieceType::Queen:
         validMoves = whiteQueen.potentialMoves(currentLocation);
         break;
+      case PieceType::Rook:
+        validMoves = whiteRookA.potentialMoves(currentLocation);
+        break;
       case PieceType::Bishop:
         validMoves = whiteBishopA.potentialMoves(currentLocation);
         break;
       case PieceType::Knight:
         validMoves = whiteKnightA.potentialMoves(currentLocation);
         break;
-      case PieceType::Rook:
-        validMoves = whiteRookA.potentialMoves(currentLocation);
-        break;
+      case PieceType::Pawn:
+        if(turnColor == Color::White) {
+            validMoves = whitePawns[0].potentialMoves(currentLocation);
+            break;
+        } else {
+            validMoves = blackPawns[0].potentialMoves(currentLocation);
+            break;
+        }
     }
     for(int i = 0; i < validMoves.size(); ++i) {
        if(futureLocation == validMoves[i]) {
@@ -166,8 +167,6 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
         }
     }
     return true;
-    }
-    return false;
 }
 
 bool ChessBoard::mustMoveOutOfCheck(Move nextMove) {}
