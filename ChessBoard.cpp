@@ -175,5 +175,9 @@ void ChessBoard::inCheck(Move nextMove) {}
 
 void ChessBoard::inCheckMate(Move nextMove) {}
 
+std::vector<Location> ChessBoard::liveBoardPawnMoves(std::vector<Location> allPossibleMoves) {
+
+}
+
 
 

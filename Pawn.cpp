@@ -4,7 +4,7 @@
     std::vector<Location> moves;
     Location potentialMove = location;
     uint8_t boardLimit = location.row;
-    for(int moveIndex = 0; moveIndex < 4; ++moveIndex) {
+    for(int moveIndex = 0; moveIndex < 2; ++moveIndex) {
         moves.push_back(potentialMove);
         potentialMove = movePiece(moveIndex, potentialMove);
         moves.push_back(potentialMove);
@@ -29,17 +29,20 @@
     }
     if(getColor() == Color::White) {
       switch(direction) {
-       case 0: return Location(row - 1, col);
-       case 1: return Location(row - 2, col);
-       case 2: return Location(row - 1, col + 1);
-       case 3: return Location(row - 1, col - 1);
+       case 0:
+         return Location(row - 1, col);
+       case 1:
+        if(row == 6) {
+         return Location(row - 2, col);
+        }
       }
     } else {
       switch(direction) {
-        case 0: return Location(row + 1, col);
-        case 1: return Location(row + 2, col);
-        case 2: return Location(row + 1, col + 1);
-        case 3: return Location(row + 1, col - 1);
+         return Location(row + 1, col);
+       case 1:
+        if(row == 1) {
+         return Location(row + 2, col);
+        }
       }
     }
     return Location(0, 0);

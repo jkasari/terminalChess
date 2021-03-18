@@ -96,6 +96,12 @@ class ChessBoard {
     */
    void inCheckMate(Move);
 
+   /**
+    * Pawns are tricky, this makes sure the pawn is doing the correct move given the current game.
+    * Checks to see if the pawn can move two squares, capture, get blocked or pass a pawn.
+    */
+   std::vector<Location> liveBoardPawnMoves(std::vector<Location>);
+
 
   Square board[8][8];
   Color turnColor = Color(Color::White);
