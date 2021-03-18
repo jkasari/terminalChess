@@ -154,10 +154,10 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
         break;
       case PieceType::Pawn:
         if(turnColor == Color::White) {
-            validMoves = whitePawns[0].potentialMoves(currentLocation);
+            validMoves = livePawnMoves(whitePawns[0].potentialMoves(currentLocation));
             break;
         } else {
-            validMoves = blackPawns[0].potentialMoves(currentLocation);
+            validMoves = livePawnMoves(blackPawns[0].potentialMoves(currentLocation));
             break;
         }
     }
@@ -175,8 +175,28 @@ void ChessBoard::inCheck(Move nextMove) {}
 
 void ChessBoard::inCheckMate(Move nextMove) {}
 
-std::vector<Location> ChessBoard::liveBoardPawnMoves(std::vector<Location> allPossibleMoves) {
-
+std::vector<Location> ChessBoard::livePawnMoves(std::vector<Location> allPossibleMoves) {
+  Location currentLocation = allPossibleMoves[0];
+  uint8_t row = currentLocation.row;
+  uint8_t col = currentLocation.col;
+  uint8_t right = col + 1;
+  uint8_t left = col - 1;
+  if(turnColor == Color::White) {
+    row -= 1;
+  } else {
+    row += 1;
+  }
+  if(board[row][col].getPiecePointer()) {
+      allPossibleMoves[1] = currentLocation;
+      allPossibleMoves[3] = currentLocation;
+  }
+  if(board[row][left].getPiecePointer()) {
+      allPossibleMoves.push_back(Location(row, left));
+  }
+  if(board[row][right].getPiecePointer()) {
+      allPossibleMoves.push_back(Location(row, right));
+  }
+  return(allPossibleMoves);
 }
 
 

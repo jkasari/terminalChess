@@ -37,5 +37,5 @@
      case 6: return Location(row - 1, col - 1);
      case 7: return Location(row, col - 1);
     }
-    return Location(0, 0);
+    return location;
   }
