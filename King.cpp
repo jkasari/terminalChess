@@ -24,7 +24,7 @@
   Location King::movePiece(uint8_t direction, Location location) {
     uint8_t row = location.row;
     uint8_t col = location.col;
-    if(direction > 3) {
+    if(direction > 7) {
       return Location(0, 0);
     }
     switch(direction) {
