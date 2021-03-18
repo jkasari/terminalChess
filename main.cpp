@@ -17,7 +17,7 @@ int main() {
   while(1) {
 
     try {
-      if(board.isWhitesTurn()) {
+      if(board.whosTurn() == Color::White) {
         cout << "Your move white:" << endl;
       } else {
         cout << "Your move black:" << endl;
@@ -45,6 +45,8 @@ int main() {
       switch (boardError) {
         case BoardError::MoveNotPossible: cout << endl << "!!! This Move is not Possible !!!"; break;
         case BoardError::FriendlyFire: cout << endl << "!!! Friendly Fire !!!"; break;
+        case BoardError::IncorrectColor: cout << endl << "!!! Piece Must be your Color !!!"; break;
+        case BoardError::PieceCantMoveThere: cout << endl << "!!! Piece Physically Can't Move There !!!"; break;
       }
       cout << endl << endl;
     }

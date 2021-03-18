@@ -14,6 +14,8 @@
 enum class BoardError {
   MoveNotPossible,
   FriendlyFire,
+  IncorrectColor,
+  PieceCantMoveThere,
 };
 
 bool operator==(const PieceType& pieceType, const Piece& piece);
@@ -48,9 +50,9 @@ class ChessBoard {
    void switchSides();
 
    /**
-    * Returns true if its whites turn and false if its blacks turn.
+    * Returns enum |White| if its whites turn and |Black| if its blacks turn.
     */
-   bool isWhitesTurn();
+   Color whosTurn();
 
  private:
   /**
@@ -63,21 +65,31 @@ class ChessBoard {
     */
    bool friendlyFire(Move);
 
+  /**
+   * Checks to make sure the correct side is playing the game.
+   */
+  bool correctColor(Move);
+
    /**
     * Checks to make sure the new move doesn't put you in check.
     */
-   bool movePutsInCheck(Move);
+  bool movePutsInCheck(Move);
 
    /**
     * Checks to see if you are currently in check, if so it makes sure your next move protects
     * the king.
     */
-   bool mustMoveOutOfCheck(Move);
+  bool mustMoveOutOfCheck(Move);
+
+  /**
+   * Checks the see if the preposed moves location lines up with how the piece actually moves.
+   */
+  bool pieceCantMoveThere(Move);
 
    /**
     * This puts the opponent in check.
     */
-   void inCheck(Move);
+  void inCheck(Move);
 
    /**
     * This puts the opponent in checkmate.
@@ -86,7 +98,7 @@ class ChessBoard {
 
 
   Square board[8][8];
-  bool whitesTurn = true;
+  Color turnColor = Color(Color::White);
   bool checkMate = false;
   bool whiteCheck = false;
   bool blackCheck = false;

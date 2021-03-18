@@ -23,6 +23,11 @@ class King : public Piece {
 
   PieceType getPieceType() const override { return PieceType::King; }
 
+ private:
+  /**
+   * Helper function that virtually moves the piece.
+   */
+  Location movePiece(uint8_t, Location) override;
 
 };
 

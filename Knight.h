@@ -22,9 +22,11 @@ class Knight : public Piece {
 
   PieceType getPieceType() const override { return PieceType::Knight; }
 
-  private:
-   static PieceType pieceType;
-
+ private:
+  /**
+   * Helper function that virtually moves the piece.
+   */
+  Location movePiece(uint8_t, Location) override;
 };
 
 #endif // Knight_h

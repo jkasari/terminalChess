@@ -22,6 +22,13 @@ class Rook : public Piece {
 
   PieceType getPieceType() const override { return PieceType::Rook; }
 
+ private:
+  /**
+   * Helper function that virtually moves the piece.
+   */
+  Location movePiece(uint8_t, Location) override;
+
+
 };
 
 #endif // Rook_h

@@ -22,6 +22,8 @@ class Bishop : public Piece {
 
   PieceType getPieceType() const override { return PieceType::Bishop; }
 
+ private:
+  Location movePiece(uint8_t, Location) override;
 
 };
 
