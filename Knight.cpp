@@ -6,11 +6,9 @@
     Location potentialMove = location;
     uint8_t boardLimit = location.row;
     for(int moveIndex = 0; moveIndex < 8; ++moveIndex) {
-      while(0 <= boardLimit && boardLimit < 8) {
-        moves.push_back(potentialMove);
-        potentialMove = movePiece(moveIndex, potentialMove);
-        boardLimit = potentialMove.row;
-      }
+      moves.push_back(potentialMove);
+      potentialMove = movePiece(moveIndex, potentialMove);
+      moves.push_back(potentialMove);
       potentialMove = location;
     }
     return moves;
@@ -29,8 +27,8 @@
   Location Knight::movePiece(uint8_t direction, Location location) {
     uint8_t row = location.row;
     uint8_t col = location.col;
-    if(direction > 3) {
-      return Location(0, 0);
+    if(direction > 7) {
+      return location;
     }
     switch(direction) {
      case 0: return Location(row + 2, col + 1);
@@ -42,5 +40,5 @@
      case 6: return Location(row + 1, col - 2);
      case 7: return Location(row - 1, col - 2);
     }
-    return Location(0, 0);
+    return location;
   }

@@ -40,7 +40,6 @@ class ChessBoard {
 
   /**
    * Give the character string for each piece to the ostream operator.
-   * |NullPiece|s character string is just " ".
    */
    std::string displayPiece(uint8_t, uint8_t) const;
 
@@ -61,7 +60,8 @@ class ChessBoard {
    bool correctPiece(Move);
 
    /**
-    * Checks to see if the new moves location is occupied by another piece.
+    * Checks to see if the newomoves location is occupied by another piece.
+    *
     */
    bool friendlyFire(Move);
 
@@ -95,6 +95,18 @@ class ChessBoard {
     * This puts the opponent in checkmate.
     */
    void inCheckMate(Move);
+
+   /**
+    * Pawns are tricky, this makes sure the pawn is doing the correct move given the current game.
+    * Checks to see if the pawn can move two squares, capture, get blocked or pass a pawn.
+    */
+   std::vector<Location> livePawnMoves(std::vector<Location>);
+
+   /**
+    * This is a non |Piece| specific live move restrictor. Basically just stops |Pieces| from jumping other pieces.
+    * This is not needed for the |Pawn| or |Knight|.
+    */
+   std::vector<Location> livePieceMoves(std::vector<Location>);
 
 
   Square board[8][8];
