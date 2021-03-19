@@ -4,14 +4,24 @@
   std::vector<Location> Rook::potentialMoves(Location location) {
     std::vector<Location> moves;
     Location potentialMove = location;
-    uint8_t boardLimit = location.row;
+    uint8_t boardLimitRow = location.row;
+    uint8_t boardLimitCol = location.col;
     for(int moveIndex = 0; moveIndex < 4; ++moveIndex) {
-      while(0 <= boardLimit && boardLimit < 8) {
+      while(
+        0 <= boardLimitRow &&
+        boardLimitRow < 8 &&
+        0 <= boardLimitCol &&
+        boardLimitCol < 8
+        ) {
         moves.push_back(potentialMove);
         potentialMove = movePiece(moveIndex, potentialMove);
-        boardLimit = potentialMove.row;
+        boardLimitRow = potentialMove.row;
+        boardLimitCol = potentialMove.col;
+
       }
       potentialMove = location;
+      boardLimitRow = location.row;
+      boardLimitCol = location.col;
     }
     return moves;
   }
@@ -29,7 +39,7 @@
     uint8_t row = location.row;
     uint8_t col = location.col;
     if(direction > 3) {
-      return Location(0, 0);
+      return location;
     }
     switch(direction) {
      case 0: return Location(row + 1, col);

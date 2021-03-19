@@ -25,7 +25,7 @@
     uint8_t row = location.row;
     uint8_t col = location.col;
     if(direction > 7) {
-      return Location(0, 0);
+      return location;
     }
     switch(direction) {
      case 0: return Location(row + 1, col + 1);

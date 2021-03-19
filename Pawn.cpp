@@ -39,6 +39,7 @@
       }
     } else {
       switch(direction) {
+       case 0:
          return Location(row + 1, col);
        case 1:
         if(row == 1) {
