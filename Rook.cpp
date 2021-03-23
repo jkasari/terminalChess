@@ -43,7 +43,7 @@
     }
     switch(direction) {
      case 0: return Location(row + 1, col);
-     case 1: return Location(row, col - 1);
+     case 1: return Location(row, col + 1);
      case 2: return Location(row - 1, col);
      case 3: return Location(row, col - 1);
     }
