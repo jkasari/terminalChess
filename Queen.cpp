@@ -43,12 +43,12 @@ Location Queen::movePiece(uint8_t direction, Location location) {
   }
   switch(direction) {
    case 0: return Location(row + 1, col);
-   case 1: return Location(row + 1, col + 1);
-   case 2: return Location(row, col - 1);
-   case 3: return Location(row + 1, col + 1);
-   case 4: return Location(row - 1, col);
-   case 5: return Location(row - 1, col + 1);
-   case 6: return Location(row, col - 1);
+   case 1: return Location(row - 1, col);
+   case 2: return Location(row, col + 1);
+   case 3: return Location(row, col - 1);
+   case 4: return Location(row + 1, col + 1);
+   case 5: return Location(row + 1, col - 1);
+   case 6: return Location(row - 1, col + 1);
    case 7: return Location(row - 1, col - 1);
   }
   return location;
