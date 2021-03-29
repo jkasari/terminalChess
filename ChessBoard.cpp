@@ -127,12 +127,30 @@ bool ChessBoard::correctColor(Move nextMove) {
 
 bool ChessBoard::movePutsInCheck(Move nextMove) {
   std::vector<Location> movesOnBoard;
-  // go across the rows of squares
-  // go down the cols of squares
-  // check if their are any pieces of the opposing color
-  // if there are, then push_back their moves.
-  // then run a loop through ever one of those moves
-  // check to see your king shares a location with any of them!
+}
+
+std::vector<Location> ChessBoard::getSquaresUnderAttack(Move nextMove) {
+  std::vector<Location> underAttackByBlack;
+  std::vector<Location> underAttackByWhite;
+    for(int i = 0; i < 8; ++i) {
+      for(int j = 0; j < 8; ++j) {
+        if (board[i][j].getPiecePointer()) {
+        std::vector<Location> piecePotentialMoves = board[i][j].getPiecePointer()->potentialMoves(Location(i, j));
+        for(int y = 0; y < piecePotentialMoves.size(); ++y) {
+          if (board[i][j].getPiecePointer()->getColor() == Color::White) {
+            underAttackByBlack.push_back(piecePotentialMoves[y]);
+          } else {
+            underAttackByWhite.push_back(piecePotentialMoves[y]);
+          }
+        }
+      }
+    }
+  }
+  if (turnColor == Color::White) {
+    return underAttackByBlack;
+  } else {
+    return underAttackByWhite;
+  }
 }
 
 bool ChessBoard::pieceCantMoveThere(Move nextMove) {
@@ -142,19 +160,6 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
   PieceType nextPiece = nextMove.getPiece();
 
   switch (nextMove.getPiece()) {
-      //   case PieceType::King:
-      //     validMoves = whiteKing.potentialMoves(currentLocation);
-      //     break;
-      //   case PieceType::Queen:
-      //     validMoves =
-      //     livePieceMoves(whiteQueen.potentialMoves(currentLocation)); break;
-      //   case PieceType::Rook:
-      //     validMoves =
-      //     livePieceMoves(whiteRookA.potentialMoves(currentLocation)); break;
-      //   case PieceType::Bishop:
-      //     validMoves =
-      //     livePieceMoves(whiteBishopA.potentialMoves(currentLocation));
-      //     break;
     case PieceType::Knight:
       validMoves = whiteKnightA.potentialMoves(currentLocation);
       break;

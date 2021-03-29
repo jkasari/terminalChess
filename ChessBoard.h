@@ -75,6 +75,12 @@ class ChessBoard {
     */
   bool movePutsInCheck(Move);
 
+  /**
+   * Gives you all the |Location|s of |Square|s under attack assuming your
+   * move has been completed.
+   */
+  std::vector<Location> getSquaresUnderAttack(Move);
+
    /**
     * Checks to see if you are currently in check, if so it makes sure your next move protects
     * the king.
