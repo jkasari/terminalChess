@@ -142,18 +142,19 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
   PieceType nextPiece = nextMove.getPiece();
 
   switch (nextMove.getPiece()) {
-    case PieceType::King:
-      validMoves = whiteKing.potentialMoves(currentLocation);
-      break;
-    case PieceType::Queen:
-      validMoves = livePieceMoves(whiteQueen.potentialMoves(currentLocation));
-      break;
-    case PieceType::Rook:
-      validMoves = livePieceMoves(whiteRookA.potentialMoves(currentLocation));
-      break;
-    case PieceType::Bishop:
-      validMoves = livePieceMoves(whiteBishopA.potentialMoves(currentLocation));
-      break;
+      //   case PieceType::King:
+      //     validMoves = whiteKing.potentialMoves(currentLocation);
+      //     break;
+      //   case PieceType::Queen:
+      //     validMoves =
+      //     livePieceMoves(whiteQueen.potentialMoves(currentLocation)); break;
+      //   case PieceType::Rook:
+      //     validMoves =
+      //     livePieceMoves(whiteRookA.potentialMoves(currentLocation)); break;
+      //   case PieceType::Bishop:
+      //     validMoves =
+      //     livePieceMoves(whiteBishopA.potentialMoves(currentLocation));
+      //     break;
     case PieceType::Knight:
       validMoves = whiteKnightA.potentialMoves(currentLocation);
       break;
@@ -167,6 +168,11 @@ bool ChessBoard::pieceCantMoveThere(Move nextMove) {
             livePawnMoves(blackPawns[0].potentialMoves(currentLocation));
         break;
       }
+    default:
+      uint8_t row = currentLocation.row;
+      uint8_t col = currentLocation.col;
+      validMoves = livePieceMoves(
+          board[row][col].getPiecePointer()->potentialMoves(currentLocation));
   }
   for (int i = 0; i < validMoves.size(); ++i) {
     if (futureLocation == validMoves[i]) {
@@ -207,21 +213,23 @@ std::vector<Location> ChessBoard::livePawnMoves(
   return (potentialMoves);
 }
 
-std::vector<Location> ChessBoard::livePieceMoves(std::vector<Location> potentialMoves) {
+std::vector<Location> ChessBoard::livePieceMoves(
+    std::vector<Location> potentialMoves) {
   Location currentLocation = potentialMoves[0];
   for (int i = 0; i < potentialMoves.size(); ++i) {
     uint8_t row = potentialMoves[i].row;
     uint8_t col = potentialMoves[i].col;
-      if (board[row][col].getPiecePointer() && potentialMoves[i] != currentLocation) {
+    if (board[row][col].getPiecePointer() &&
+        potentialMoves[i] != currentLocation) {
+      i++;
+      while (potentialMoves[i] != currentLocation) {
+        potentialMoves[i] = currentLocation;
         i++;
-        while (potentialMoves[i] != currentLocation) {
-          potentialMoves[i] = currentLocation;
-          i++;
-          if (i > potentialMoves.size()) {
-            break;
-          }
+        if (i > potentialMoves.size()) {
+          break;
         }
       }
     }
+  }
   return potentialMoves;
 }
