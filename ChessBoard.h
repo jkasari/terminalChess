@@ -114,6 +114,10 @@ class ChessBoard {
     */
    std::vector<Location> livePieceMoves(std::vector<Location>);
 
+   /**
+    * Takes a |PieceType| and its |Location| and returns all of it's valid moves during a game.
+    */
+   std::vector<Location> getLivePieceMoves(PieceType, Location);
 
   Square board[8][8];
   Color turnColor = Color(Color::White);
