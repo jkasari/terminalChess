@@ -72,9 +72,9 @@ void ChessBoard::isValidMove(Move nextMove) {
   if (pieceCantMoveThere(nextMove)) {
     throw(BoardError::PieceCantMoveThere);
   }
-  if (movePutsInCheck(nextMove)) {
-    throw(BoardError::PutsInCheck);
-  }
+  //if (movePutsInCheck(nextMove)) {
+  //  throw(BoardError::PutsInCheck);
+  //}
 }
 
 void ChessBoard::executeMove(Move nextMove) {
@@ -137,27 +137,33 @@ bool ChessBoard::movePutsInCheck(Move nextMove) {
     } else if (turnColor == Color::Black) {
       enemyColor = Color::White;
     }
-    //enemyMoves = getSquaresUnderAttack(enemyColor);
+    enemyMoves = getSquaresUnderAttack(enemyColor);
 
-    //for(int i = 0; i < enemyMoves.size(); ++i) {
-    //  if (nextMove.getToLocation() == enemyMoves[i]) {
-    //    return true;
-    //  }
-    //}
+    for(int i = 0; i < enemyMoves.size(); ++i) {
+      if (nextMove.getToLocation() == enemyMoves[i]) {
+        return true;
+      }
+    }
   }
   return false;
 }
 
-std::vector<Location> ChessBoard::getSquaresUnderAttack(Color color) {
+std::vector<Location> ChessBoard::getSquaresUnderAttack(Color enemyColor) {
   std::vector<Location> pieceMoves;
   std::vector<Location> squaresUnderAttack;
+  Location currentLocation;
 
   for(int i = 0; i < 8; ++i) {
     for(int j = 0; j < 8; ++j) {
-      if (board[i][j].getPiecePointer()->getColor() != color) {
-        pieceMoves = getLivePieceMoves(board[i][j].getPiecePointer()->getPieceType(), Location(i, j));
-        for(int i = 0; i < pieceMoves.size(); ++i) {
-          squaresUnderAttack.push_back(pieceMoves[i]);
+      if (board[i][j].getPiecePointer()) {
+        if(board[i][j].getPiecePointer()->getColor() == enemyColor) {
+          currentLocation = Location(i, j);
+          pieceMoves = getLivePieceMoves(board[i][j].getPiecePointer()->getPieceType(), currentLocation);
+          for(int y = 0; y < pieceMoves.size(); ++y) {
+            if(pieceMoves[y] != currentLocation) {
+              squaresUnderAttack.push_back(pieceMoves[y]);
+            }
+          }
         }
       }
     }
