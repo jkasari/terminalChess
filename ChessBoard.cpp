@@ -72,9 +72,9 @@ void ChessBoard::isValidMove(Move nextMove) {
   if (pieceCantMoveThere(nextMove)) {
     throw(BoardError::PieceCantMoveThere);
   }
-  //if (movePutsInCheck(nextMove)) {
-  //  throw(BoardError::PutsInCheck);
-  //}
+  if (movePutsInCheck(nextMove)) {
+    throw(BoardError::PutsInCheck);
+  }
 }
 
 void ChessBoard::executeMove(Move nextMove) {
