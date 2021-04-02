@@ -16,6 +16,7 @@ enum class BoardError {
   FriendlyFire,
   IncorrectColor,
   PieceCantMoveThere,
+  PutsInCheck,
 };
 
 bool operator==(const PieceType& pieceType, const Piece& piece);
@@ -75,6 +76,11 @@ class ChessBoard {
     */
   bool movePutsInCheck(Move);
 
+  /**
+   * Gives you all the |Location|s of |Square|s under attack by the opposing color.
+   */
+  std::vector<Location> getSquaresUnderAttack(Color);
+
    /**
     * Checks to see if you are currently in check, if so it makes sure your next move protects
     * the king.
@@ -108,6 +114,10 @@ class ChessBoard {
     */
    std::vector<Location> livePieceMoves(std::vector<Location>);
 
+   /**
+    * Takes a |PieceType| and its |Location| and returns all of it's valid moves during a game.
+    */
+   std::vector<Location> getLivePieceMoves(PieceType, Location);
 
   Square board[8][8];
   Color turnColor = Color(Color::White);
