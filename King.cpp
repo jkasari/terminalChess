@@ -5,11 +5,17 @@
     Location potentialMove = location;
     uint8_t boardLimit = location.row;
     for(int moveIndex = 0; moveIndex < 8; ++moveIndex) {
-        moves.push_back(potentialMove);
-        potentialMove = movePiece(moveIndex, potentialMove);
-        moves.push_back(potentialMove);
-        potentialMove = location;
-      }
+      moves.push_back(potentialMove);
+      potentialMove = movePiece(moveIndex, potentialMove);
+      moves.push_back(potentialMove);
+      potentialMove = location;
+    }
+    if (canCastle) {
+      uint8_t row = location.row;
+      uint8_t col = location.col;
+      moves.push_back(Location(row, col + 2));
+      moves.push_back(Location(row, col - 2));
+    }
     return moves;
   }
 

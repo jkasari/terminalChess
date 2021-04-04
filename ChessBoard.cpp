@@ -75,6 +75,9 @@ void ChessBoard::isValidMove(Move nextMove) {
   if (movePutsInCheck(nextMove)) {
     throw(BoardError::PutsInCheck);
   }
+  if (cannotCastle(nextMove)) {
+    throw(BoardError::CannotCastle);
+  }
 }
 
 void ChessBoard::executeMove(Move nextMove) {
@@ -84,8 +87,22 @@ void ChessBoard::executeMove(Move nextMove) {
   uint8_t toRow = nextMove.getToLocation().row;
   uint8_t toCol = nextMove.getToLocation().col;
 
+  if (nextMove.getPiece() == PieceType::King) {
+    if (fromCol - toCol == 2) {
+      board[fromRow][3] = board[fromRow][0];
+      board[fromRow][0].newPiece(nullptr);
+      board[fromRow][3].getPiecePointer()->castled();
+    }
+    if (toCol - fromCol == 2) {
+      board[fromRow][5] = board[fromRow][7];
+      board[fromRow][7].newPiece(nullptr);
+      board[fromRow][5].getPiecePointer()->castled();
+    }
+  }
+
   board[toRow][toCol] = board[fromRow][fromCol];
   board[fromRow][fromCol].newPiece(nullptr);
+  board[toRow][toCol].getPiecePointer()->castled();
 }
 
 std::string ChessBoard::displayPiece(uint8_t row, uint8_t col) const {
@@ -265,4 +282,31 @@ std::vector<Location> ChessBoard::getLivePieceMoves(PieceType piece, Location lo
           board[row][col].getPiecePointer()->potentialMoves(location));
   }
   return validMoves;
+}
+
+
+bool ChessBoard::cannotCastle(Move nextMove) {
+  uint8_t fromRow = nextMove.getFromLocation().row;
+  uint8_t fromCol = nextMove.getFromLocation().col;
+  uint8_t toRow = nextMove.getToLocation().row;
+  uint8_t toCol = nextMove.getToLocation().col;
+  if (nextMove.getPiece() == PieceType::King && fromRow == toRow) {
+    if (fromCol - toCol == 2) {
+      if(!board[fromRow][0].getPiecePointer() ||
+          board[fromRow][0].getPiecePointer()->getPieceType() != PieceType::Rook ||
+          board[fromRow][0].getPiecePointer()->canStillCastle() == false ||
+          board[fromRow][fromCol].getPiecePointer()->canStillCastle() == false) {
+        return true;
+      }
+    }
+    if (toCol - fromCol == 2) {
+      if(!board[fromRow][7].getPiecePointer() ||
+          board[fromRow][7].getPiecePointer()->getPieceType() != PieceType::Rook ||
+          board[fromRow][7].getPiecePointer()->canStillCastle() == false ||
+          board[fromRow][fromCol].getPiecePointer()->canStillCastle() == false) {
+        return true;
+      }
+    }
+  }
+  return false;
 }

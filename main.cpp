@@ -48,6 +48,7 @@ int main() {
         case BoardError::IncorrectColor: cout << endl << "!!! Piece Must be your Color !!!"; break;
         case BoardError::PieceCantMoveThere: cout << endl << "!!! Piece Physically Can't Move There !!!"; break;
         case BoardError::PutsInCheck: cout << endl << "!!! That Puts Your King in Check !!!"; break;
+        case BoardError::CannotCastle: cout << endl << "!!! Castle Unavailable !!!"; break;
       }
       cout << endl << endl;
     }
