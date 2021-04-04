@@ -32,6 +32,10 @@ class Piece {
 
   Color getColor() const;
 
+  bool canStillCastle(void) const { return canCastle; }
+
+  void castled(void) const { canCastle = false; }
+
   /**
   * Returns the phsical moves a piece can make. This does factor in the board, but not other peices.
   */
@@ -55,6 +59,9 @@ class Piece {
 
  private:
   Color color;
+
+ protected:
+  inline static bool canCastle = true;
 
 
 };

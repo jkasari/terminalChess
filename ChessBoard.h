@@ -17,6 +17,7 @@ enum class BoardError {
   IncorrectColor,
   PieceCantMoveThere,
   PutsInCheck,
+  CannotCastle,
 };
 
 bool operator==(const PieceType& pieceType, const Piece& piece);
@@ -118,6 +119,11 @@ class ChessBoard {
     * Takes a |PieceType| and its |Location| and returns all of it's valid moves during a game.
     */
    std::vector<Location> getLivePieceMoves(PieceType, Location);
+
+   /**
+    * Checks to see if the king can actually castle.
+    */
+   bool cannotCastle(Move);
 
   Square board[8][8];
   Color turnColor = Color(Color::White);

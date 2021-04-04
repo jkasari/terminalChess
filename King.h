@@ -23,7 +23,6 @@ class King : public Piece {
 
   PieceType getPieceType() const override { return PieceType::King; }
 
-  void castled(void) { canCastle = false; }
 
  private:
   /**

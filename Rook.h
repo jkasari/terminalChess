@@ -22,15 +22,12 @@ class Rook : public Piece {
 
   PieceType getPieceType() const override { return PieceType::Rook; }
 
-  void castled(void) { canCastle = false; }
 
  private:
   /**
    * Helper function that virtually moves the piece.
    */
   Location movePiece(uint8_t, Location) override;
-
-  bool canCastle = true;
 
 };
 
