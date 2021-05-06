@@ -210,6 +210,7 @@ void ChessBoard::inCheck(Move nextMove) {}
 
 void ChessBoard::inCheckMate(Move nextMove) {}
 
+
 std::vector<Location> ChessBoard::livePawnMoves(
     std::vector<Location> potentialMoves) {
   Location currentLocation = potentialMoves[0];
